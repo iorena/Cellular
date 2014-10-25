@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>Cellular automatons</title>
+        <script type="text/javascript">
+        var checkboxes = function() {
+            for (var i = 0; i < 100; i++)
+            {
+                var box = document.createElement("input");
+                box.type = "checkbox";
+                box.name = "cells";
+                box.value = "cell"+i;
+                document.getElementById("checkboxes").appendChild(box);
+            }
+        }
+
+        var rules = function() {
+            var table = document.createElement("table");
+
+            var tr = document.createElement("tr");
+
+            for (var i = 0; i < 8; i++) 
+            {
+                var td = document.createElement("td");
+                var text = document.createTextNode(("000" + i.toString(2)).slice(-3));
+                td.appendChild(text);
+
+                tr.appendChild(td);
+            }
+
+            var boxtr = document.createElement("tr");
+
+            for (var i = 0; i < 8; i++)
+            {
+                var boxtd = document.createElement("td");
+
+                var box = document.createElement("input");
+                box.type = "checkbox";
+                box.name = "rules";
+                box.value = "rule" + i;
+                boxtd.appendChild(box);
+
+                boxtr.appendChild(boxtd);
+            }
+
+            table.appendChild(tr);
+            table.appendChild(boxtr);
+            
+            document.getElementById("rules").appendChild(table);
+
+        }
+        </script>
+    </head>
+
+    <body>
+        <p>Width <input type="text" id="width"></p>
+        <p>Iterations <input type="text" id="iter"></p>
+        <p id="checkboxes">Starting cells <script> checkboxes(); </script>
+        </p>
+        <p id="rules">Rules <script> rules(); </script> </p>
+        <p>Wrap around? <input type="checkbox" id="wraparound"></p>
+        <p><button type="button" id="draw">Ok</button></p> 
+
+
+        <canvas width="800" height="800" id="canvas">
+        </canvas>
+
+        </div>
+        <script src="jquery-2.1.1.js"></script>
+        <script src="automaton.js"></script>
+    </body>
+
+</html>
